@@ -1,17 +1,21 @@
-import Link from "next/link"
+import HeaderLink from "@/web/components/HeaderLink"
 
 const Page = (props) => {
   const { children } = props
 
   return (
     <div className="flex flex-col bg-white">
-      <div className="mx-auto flex justify-between py-3 sm:w-full md:w-2/3">
-        <Link href="/" className="font-bold">
+      <div className="mx-auto flex w-full justify-between py-3 sm:w-2/3">
+        <HeaderLink href="/" className="font-bold">
           NETMAPPER
-        </Link>
+        </HeaderLink>
         <div className="flex gap-6">
-          <Link href="/scan">SCAN</Link>
-          <p>HISTORIQUE</p>
+          <HeaderLink href="/scan" className="font-medium">
+            SCAN
+          </HeaderLink>
+          <HeaderLink href="/historic" className="font-medium">
+            HISTORIQUE
+          </HeaderLink>
         </div>
       </div>
       <hr />
