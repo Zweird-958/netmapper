@@ -28,16 +28,21 @@ const Scan = () => {
 
   return (
     <Page>
-      <Form
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <h1 className="text-center text-xl font-bold text-blue-400">SCAN</h1>
-        <Field name="ip" placeholder="IP" />
-        <Field name="retries" placeholder="Max retries" type="number" />
-        <SubmitButton>SCAN</SubmitButton>
-      </Form>
+      <div className="absolute -z-10 flex h-screen w-full items-center justify-center">
+        <Form
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+          className="shadow-lg shadow-blue-400"
+        >
+          <p className="text-center text-3xl font-bold tracking-wider text-blue-400">
+            SCAN
+          </p>
+          <Field name="ip" placeholder="IP" />
+          <Field name="retries" placeholder="Max retries" type="number" />
+          <SubmitButton>SCAN</SubmitButton>
+        </Form>
+      </div>
     </Page>
   )
 }
