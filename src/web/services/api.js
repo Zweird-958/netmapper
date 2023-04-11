@@ -5,7 +5,7 @@ import deepmerge from "deepmerge"
 const call =
   (method) =>
   (path, data = null, options = {}) => {
-    options.headers = deepmerge(options.headers)
+    // options.headers = deepmerge(options.headers)
 
     const opts = {
       baseURL: config.api.baseURL,

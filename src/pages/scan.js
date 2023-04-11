@@ -2,6 +2,7 @@ import Page from "@/web/Page"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import SubmitButton from "@/web/components/SubmitButton"
+import api from "@/web/services/api"
 import * as yup from "yup"
 // import child_process from "node:child_process"
 
@@ -16,10 +17,13 @@ const validationSchema = yup.object().shape({
 })
 
 const Scan = () => {
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     // const { ip } = values
     // child_process.spawn("nmap", ip)
     console.log(values)
+    await api.post("/nmap", values)
+    console.log("submited")
+    // console.log(values)
   }
 
   return (
