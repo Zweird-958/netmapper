@@ -7,7 +7,7 @@ const SubmitButton = (props) => {
     <button
       type="submit"
       className={clsx(
-        "mx-auto w-3/4 rounded bg-blue-500 px-4 py-2 text-lg font-bold text-white shadow-md shadow-blue-600",
+        "mx-auto w-3/4 rounded bg-blue-500 px-4 py-2 text-lg font-bold text-white shadow-md shadow-blue-600 dark:bg-blue-600",
         className
       )}
       {...otherProps}

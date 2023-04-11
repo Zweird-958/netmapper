@@ -1,11 +1,12 @@
 import HeaderLink from "@/web/components/HeaderLink"
+import Switch from "@/web/components/Switch"
 
 const Page = (props) => {
   const { children } = props
 
   return (
-    <div className="flex flex-col bg-white">
-      <div className="mx-auto flex w-full justify-between py-3 sm:w-2/3">
+    <div className="flex flex-col bg-white shadow-md dark:bg-gray-900">
+      <div className="mx-auto flex w-full justify-between py-3 dark:text-white sm:w-2/3">
         <HeaderLink href="/" className="font-bold">
           NETMAPPER
         </HeaderLink>
@@ -16,9 +17,9 @@ const Page = (props) => {
           <HeaderLink href="/historic" className="font-medium">
             HISTORIQUE
           </HeaderLink>
+          <Switch />
         </div>
       </div>
-      <hr />
       {children}
     </div>
   )
