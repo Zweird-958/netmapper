@@ -8,7 +8,7 @@ const HomePage = () => {
         className="flex flex-col items-center gap-10 font-mono text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1.5 }}
       >
         <p className="text-6xl font-bold tracking-widest transition-all hover:tracking-normal">
           NETMAPPER
