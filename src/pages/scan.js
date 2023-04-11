@@ -19,10 +19,7 @@ const validationSchema = yup.object().shape({
 const Scan = () => {
   const handleSubmit = async (values) => {
     // const { ip } = values
-    // child_process.spawn("nmap", ip)
-    console.log(values)
     await api.post("/nmap", values)
-    console.log("submited")
     // console.log(values)
   }
 
@@ -33,9 +30,8 @@ const Scan = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
-          className="shadow-lg shadow-blue-400"
         >
-          <p className="text-center text-3xl font-bold tracking-wider text-blue-400">
+          <p className="mx-auto w-fit text-3xl font-bold tracking-wider text-blue-400 transition-all hover:scale-110 dark:text-blue-600">
             SCAN
           </p>
           <Field name="ip" placeholder="IP" />

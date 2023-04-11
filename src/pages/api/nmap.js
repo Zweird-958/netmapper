@@ -1,10 +1,13 @@
+import config from "@/api/config"
 import CommandsModel from "@/api/db/models/CommandsModel"
 import mw from "@/api/mw.js"
 import { exec } from "child_process"
+import mongoose from "mongoose"
 
 const handler = mw({
   POST: [
     async (req, res) => {
+      await mongoose.connect(config.db.uri)
       const { ip } = req.body
       // console.log(ip)
       exec(`nmap -O ${ip}`, async (error, stdout) => {
