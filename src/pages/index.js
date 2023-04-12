@@ -14,7 +14,7 @@ const HomePage = () => {
         <MainLink href="/scan" className="bg-blue-400">
           SCAN
         </MainLink>
-        <MainLink href="/scan" className="bg-blue-400">
+        <MainLink href="/history" className="bg-blue-400">
           HISTORIQUE
         </MainLink>
       </div>
