@@ -1,32 +1,56 @@
 import CommandModel from "@/api/db/models/CommandModel"
 import mw from "@/api/mw.js"
-import { exec } from "child_process"
+import { spawn } from "child_process"
 
 const handler = mw({
   POST: [
     async (req, res) => {
       const { ip } = req.body
-      // console.log(ip)
-      exec(`nmap ${ip}`, async (error, stdout) => {
-        if (error) {
-          console.error(`Erreur lors de l'exécution de la commande: ${error}`)
+      const nmap = spawn("nmap", [ip])
 
-          return
-        }
+      const resultPromise = new Promise((resolve, reject) => {
+        let result = ""
 
-        // console.log(`${typeof stdout}`)
-        // console.log(`stdout: ${stdout}`)
-        // console.log(stdout.length)
-        console.log("to create")
+        nmap.stdout.on("data", async (data) => {
+          result += await data.toString()
+        })
+
+        // nmap.stderr.on("data", (data) => {
+        //   console.error(`stderr: ${data}`)
+        // })
+
+        nmap.on("close", () => {
+          resolve(result)
+        })
+
+        nmap.on("error", (err) => {
+          reject(err)
+        })
+      })
+
+      try {
+        const result = await resultPromise
+
         await CommandModel.create({
           ip,
           options: [],
-          result: stdout,
+          result,
         })
-        console.log("created")
-        // console.error(`stderr: ${stderr}`)
-      })
-      res.send({ result: true })
+        res.send({ result: true })
+
+        return
+      } catch (err) {
+        res.send({ error: err })
+
+        return
+      }
+    },
+  ],
+  GET: [
+    async (req, res) => {
+      const history = await CommandModel.find()
+
+      res.send({ result: history })
     },
   ],
 })
