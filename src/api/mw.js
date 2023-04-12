@@ -1,4 +1,5 @@
 import config from "@/api/config.js"
+import log from "@/api/middlewares/log"
 import mongoose from "mongoose"
 
 const mw = (handlersByMethod) => async (req, res) => {
@@ -13,6 +14,7 @@ const mw = (handlersByMethod) => async (req, res) => {
   }
 
   await mongoose.connect(config.db.uri)
+  console.log("Connected")
 
   try {
     let handlerIndex = 0
@@ -24,7 +26,8 @@ const mw = (handlersByMethod) => async (req, res) => {
 
       await handler(req, res, next)
     }
-    await next()
+    // await next()
+    await log(req, res, next)
   } finally {
     await mongoose.disconnect()
   }
