@@ -14,7 +14,6 @@ const mw = (handlersByMethod) => async (req, res) => {
   }
 
   await mongoose.connect(config.db.uri)
-  console.log("Connected")
 
   try {
     let handlerIndex = 0
