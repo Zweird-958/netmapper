@@ -12,15 +12,20 @@ const initialValues = {
 }
 
 const validationSchema = yup.object().shape({
-  ip: yup.string().required().label("🌐 IP"),
+  ip: yup
+    .string()
+    .required()
+    .matches(
+      /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+      "❌ Veuillez mettre une ip valide"
+    )
+    .label("🌐 IP"),
   retries: yup.string().label("Max retries"),
 })
 
 const Scan = () => {
   const handleSubmit = async (values) => {
-    // const { ip } = values
     await api.post("/nmap", values)
-    // console.log(values)
   }
 
   return (
