@@ -20,19 +20,13 @@ const handler = mw({
           result += await data.toString()
         })
 
-        nmap.on("close", () => {
-          resolve(result)
-        })
-
-        nmap.on("error", (err) => {
-          reject(err)
+        nmap.on("close", (code) => {
+          code === 0 ? resolve(result) : reject(`Error ${code}`)
         })
       })
 
       try {
         const result = await resultPromise
-
-        console.log(optionsSelected)
 
         const command = await CommandModel.create({
           ip,
@@ -43,7 +37,7 @@ const handler = mw({
 
         return
       } catch (err) {
-        res.send({ error: err })
+        res.send({ result: err })
 
         return
       }

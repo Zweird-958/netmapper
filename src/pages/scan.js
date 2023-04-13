@@ -42,7 +42,7 @@ const Scan = () => {
     const {
       data: { result },
     } = await api.post("/nmap", values)
-    // setCurrentResult(result)
+    setCurrentResult(result)
   }
 
   return (
@@ -65,19 +65,15 @@ const Scan = () => {
             <Field name="retries" placeholder="Max retries" type="number" />
             <SubmitButton>SCAN</SubmitButton>
           </Form>
-        ) : (
+        ) : currentResult.result ? (
           <>
             <HistorySummary
               result={currentResult.result}
               id={currentResult._id}
             />
-            <button
-              onClick={resetResult}
-              className="rounded bg-sky-600 px-3 py-2 font-mono text-white transition-all duration-200 hover:scale-125"
-            >
-              Faire un nouveau scan
-            </button>
           </>
+        ) : (
+          <p>{currentResult}</p>
         )}
       </div>
     </Page>
