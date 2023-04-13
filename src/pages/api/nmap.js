@@ -5,8 +5,13 @@ import { spawn } from "child_process"
 const handler = mw({
   POST: [
     async (req, res) => {
-      const { ip } = req.body
-      const nmap = spawn("nmap", [ip])
+      const { ip, options } = req.body
+
+      const optionsSelected = Object.entries(options)
+        .filter(([, value]) => value === true)
+        .map(([key]) => `-${key}`)
+
+      const nmap = spawn("nmap", [optionsSelected, ip].flat())
 
       const resultPromise = new Promise((resolve, reject) => {
         let result = ""
@@ -27,9 +32,11 @@ const handler = mw({
       try {
         const result = await resultPromise
 
+        console.log(optionsSelected)
+
         const command = await CommandModel.create({
           ip,
-          options: [],
+          options: optionsSelected,
           result,
         })
         res.send({ result: command })

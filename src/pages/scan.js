@@ -1,4 +1,5 @@
 import Page from "@/web/Page"
+import CheckBox from "@/web/components/CheckBox"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import HistorySummary from "@/web/components/HistorySummary"
@@ -11,6 +12,10 @@ import * as yup from "yup"
 const initialValues = {
   ip: "",
   retries: "",
+  options: {
+    sV: false,
+    sS: false,
+  },
 }
 
 const validationSchema = yup.object().shape({
@@ -33,10 +38,11 @@ const Scan = () => {
   }
 
   const handleSubmit = async (values) => {
+    console.log(values)
     const {
       data: { result },
     } = await api.post("/nmap", values)
-    setCurrentResult(result)
+    // setCurrentResult(result)
   }
 
   return (
@@ -52,6 +58,10 @@ const Scan = () => {
               SCAN
             </p>
             <Field name="ip" placeholder="IP" />
+            <div className="flex justify-center gap-2">
+              <CheckBox name="options.sV" label="-sV" />
+              <CheckBox name="options.sS" label="-sS" />
+            </div>
             <Field name="retries" placeholder="Max retries" type="number" />
             <SubmitButton>SCAN</SubmitButton>
           </Form>
