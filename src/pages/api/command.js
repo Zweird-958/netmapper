@@ -20,7 +20,9 @@ const handler = mw({
     async (req, res) => {
       console.log("delete")
       const { id } = req.body
+      console.log(req.body)
       const command = await CommandModel.deleteOne({ _id: id })
+      console.log(command)
 
       if (command.deletedCount === 0) {
         res.status(404).send({ error: "404 Not found!" })

@@ -12,9 +12,6 @@ const call =
       ...options,
     }
 
-    console.log(opts.baseURL, path)
-    console.log("METHOD ", method)
-
     return axios[method](path, method === "get" ? opts : data, opts)
   }
 
