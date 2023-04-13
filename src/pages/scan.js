@@ -1,4 +1,5 @@
 import Page from "@/web/Page"
+import Button from "@/web/components/Button"
 import CheckBox from "@/web/components/CheckBox"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
@@ -71,12 +72,12 @@ const Scan = () => {
               result={currentResult.result}
               id={currentResult._id}
             />
-            <button
-              className="rounded bg-blue-500 px-3 py-2 font-mono text-white shadow-md"
+            <Button
+              className="bg-blue-500 transition-all hover:bg-blue-600"
               onClick={resetResult}
             >
               Faire un nouveau scan
-            </button>
+            </Button>
           </>
         ) : (
           <p>{currentResult}</p>
