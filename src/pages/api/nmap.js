@@ -15,10 +15,6 @@ const handler = mw({
           result += await data.toString()
         })
 
-        // nmap.stderr.on("data", (data) => {
-        //   console.error(`stderr: ${data}`)
-        // })
-
         nmap.on("close", () => {
           resolve(result)
         })
@@ -31,12 +27,12 @@ const handler = mw({
       try {
         const result = await resultPromise
 
-        await CommandModel.create({
+        const command = await CommandModel.create({
           ip,
           options: [],
           result,
         })
-        res.send({ result: true })
+        res.send({ result: command })
 
         return
       } catch (err) {
