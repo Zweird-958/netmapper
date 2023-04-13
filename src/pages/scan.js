@@ -71,6 +71,12 @@ const Scan = () => {
               result={currentResult.result}
               id={currentResult._id}
             />
+            <button
+              className="rounded bg-blue-500 px-3 py-2 font-mono text-white shadow-md"
+              onClick={resetResult}
+            >
+              Faire un nouveau scan
+            </button>
           </>
         ) : (
           <p>{currentResult}</p>

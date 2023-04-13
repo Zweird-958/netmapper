@@ -8,7 +8,22 @@ const handler = mw({
       const command = await CommandModel.findOne({ _id: id })
 
       if (!command) {
-        res.send({ error: "404 Not found!" })
+        res.status(404).send({ result: "404 Not found!" })
+
+        return
+      }
+
+      res.send({ result: command })
+    },
+  ],
+  DELETE: [
+    async (req, res) => {
+      console.log("delete")
+      const { id } = req.body
+      const command = await CommandModel.deleteOne({ _id: id })
+
+      if (command.deletedCount === 0) {
+        res.status(404).send({ error: "404 Not found!" })
 
         return
       }

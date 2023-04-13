@@ -18,7 +18,7 @@ const History = () => {
 
   return (
     <Page>
-      <div className="mx-auto mt-2 w-2/5">
+      <div className="mx-auto mt-2 w-2/5 max-w-max">
         {history.map(({ result, _id }, index) => (
           <HistorySummary key={index} result={result} id={_id} />
         ))}
