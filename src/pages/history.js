@@ -12,7 +12,7 @@ const History = () => {
     ;(async () => {
       const {
         data: { result },
-      } = await api.get("/nmap")
+      } = await api.get("/command")
 
       setHistory(result)
     })()

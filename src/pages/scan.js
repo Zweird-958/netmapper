@@ -39,10 +39,9 @@ const Scan = () => {
   }
 
   const handleSubmit = async (values) => {
-    console.log(values)
     const {
       data: { result },
-    } = await api.post("/nmap", values)
+    } = await api.post("/command", values)
     setCurrentResult(result)
   }
 

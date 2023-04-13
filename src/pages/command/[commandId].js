@@ -16,7 +16,7 @@ const CommandPage = () => {
       try {
         const {
           data: { result },
-        } = await api.post("/command", { id: commandId })
+        } = await api.get(`/command/${commandId}`)
 
         setCommand(result)
       } catch {
