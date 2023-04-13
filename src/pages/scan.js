@@ -1,9 +1,9 @@
 import Page from "@/web/Page"
 import Button from "@/web/components/Button"
-import CheckBox from "@/web/components/CheckBox"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import HistorySummary from "@/web/components/HistorySummary"
+import Radio from "@/web/components/Radio"
 import SubmitButton from "@/web/components/SubmitButton"
 import api from "@/web/services/api"
 import { useState } from "react"
@@ -13,10 +13,7 @@ import * as yup from "yup"
 const initialValues = {
   ip: "",
   retries: "",
-  options: {
-    sV: false,
-    sS: false,
-  },
+  scanOptions: undefined,
 }
 
 const validationSchema = yup.object().shape({
@@ -59,8 +56,8 @@ const Scan = () => {
             </p>
             <Field name="ip" placeholder="IP" />
             <div className="flex justify-center gap-2">
-              <CheckBox name="options.sV" label="-sV" />
-              <CheckBox name="options.sS" label="-sS" />
+              <Radio name="scanOptions" label="-sV" value="-sV" />
+              <Radio name="scanOptions" label="-sS" value="-sS" />
             </div>
             <Field name="retries" placeholder="Max retries" type="number" />
             <SubmitButton>SCAN</SubmitButton>

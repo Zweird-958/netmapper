@@ -38,6 +38,7 @@ const CommandPage = () => {
             label="Options utilisé"
           />
           <CommandInfo result={command.createdAt} label="Date du scan" />
+          <p>{command.options.toString()}</p>
         </CommandDiv>
       )}
     </Page>

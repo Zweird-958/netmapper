@@ -5,15 +5,16 @@ import mw from "@/api/mw"
 const handler = mw({
   POST: [
     async (req, res) => {
-      const { ip, options } = req.body
+      const { ip, scanOptions } = req.body
 
-      const optionsSelected = Object.entries(options)
-        .filter(([, value]) => value === true)
-        .map(([key]) => `-${key}`)
+      let options = []
 
-      const nmap = spawn("nmap", [optionsSelected, ip].flat())
+      if (scanOptions) {
+        options.push(scanOptions)
+      }
 
       const resultPromise = new Promise((resolve, reject) => {
+        const nmap = spawn("nmap", [options, ip].flat())
         let result = ""
 
         nmap.stdout.on("data", async (data) => {
@@ -26,11 +27,13 @@ const handler = mw({
       })
 
       try {
+        // console.log("result")
         const result = await resultPromise
+        // console.log(result)
 
         const command = await CommandModel.create({
           ip,
-          options: optionsSelected,
+          options,
           result,
         })
         res.send({ result: command })
