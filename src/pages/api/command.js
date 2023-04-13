@@ -48,7 +48,7 @@ const handler = mw({
   ],
   GET: [
     async (req, res) => {
-      const history = await CommandModel.find()
+      const history = await CommandModel.find().sort({ createdAt: -1 })
 
       res.send({ result: history })
     },
