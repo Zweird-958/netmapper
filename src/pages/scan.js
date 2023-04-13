@@ -44,8 +44,8 @@ const Scan = () => {
 
   return (
     <Page>
-      <div className="absolute -z-10 flex h-screen w-full flex-col items-center justify-center">
-        {!currentResult ? (
+      {!currentResult ? (
+        <div className="absolute -z-10 flex h-screen w-full flex-col items-center justify-center">
           <Form
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -62,23 +62,23 @@ const Scan = () => {
             <Field name="retries" placeholder="Max retries" type="number" />
             <SubmitButton>SCAN</SubmitButton>
           </Form>
-        ) : currentResult.result ? (
-          <>
-            <HistorySummary
-              result={currentResult.result}
-              id={currentResult._id}
-            />
-            <Button
-              className="bg-blue-500 transition-all hover:bg-blue-600"
-              onClick={resetResult}
-            >
-              Faire un nouveau scan
-            </Button>
-          </>
-        ) : (
-          <p>{currentResult}</p>
-        )}
-      </div>
+        </div>
+      ) : currentResult.result ? (
+        <div className="mx-auto mt-5 flex w-3/5 flex-col">
+          <HistorySummary
+            result={currentResult.result}
+            id={currentResult._id}
+          />
+          <Button
+            className="mx-auto my-5 w-fit bg-blue-500 text-center transition-all hover:bg-blue-600"
+            onClick={resetResult}
+          >
+            Faire un nouveau scan
+          </Button>
+        </div>
+      ) : (
+        <p>{currentResult}</p>
+      )}
     </Page>
   )
 }
