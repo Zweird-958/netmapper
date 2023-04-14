@@ -21,6 +21,7 @@ TO DO :
 ✅ Sign In
 ✅ Sign Up
 ✅ Command
+⬛ Delete Command
 ⬛ User History
 ⬛ Options (--max-retries)
 ✅ Scan Options (-sV,-sS)
