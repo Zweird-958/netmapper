@@ -1,5 +1,4 @@
 import AppContext from "@/web/components/AppContext"
-import Button from "@/web/components/Button"
 import HeaderLink from "@/web/components/HeaderLink"
 import Switch from "@/web/components/Switch"
 import { useContext } from "react"
