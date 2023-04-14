@@ -1,3 +1,4 @@
+import UserSchema from "@/api/db/schemas/UserSchema"
 import { Schema } from "mongoose"
 
 const CommandSchema = new Schema(
@@ -10,6 +11,11 @@ const CommandSchema = new Schema(
 
     result: {
       type: String,
+      required: true,
+    },
+
+    user: {
+      type: UserSchema,
       required: true,
     },
   },

@@ -5,8 +5,12 @@ import deepmerge from "deepmerge"
 const call =
   (method) =>
   (path, data = null, options = {}) => {
-    // options.headers = deepmerge(options.headers)
+    const jwt = localStorage.getItem(config.session.localStorageKey)
 
+    options.headers = deepmerge(
+      options.headers,
+      jwt ? { authorization: jwt } : {}
+    )
     const opts = {
       baseURL: config.api.baseURL,
       ...options,

@@ -1,11 +1,14 @@
 import CommandModel from "@/api/db/models/CommandModel"
 import { spawn } from "child_process"
 import mw from "@/api/mw"
+import auth from "@/api/middlewares/auth"
 
 const handler = mw({
   POST: [
+    auth,
     async (req, res) => {
       const { ip, scanOptions } = req.body
+      const user = req.user
 
       let options = []
 
@@ -35,6 +38,7 @@ const handler = mw({
           ip,
           options,
           result,
+          user,
         })
         res.send({ result: command })
 
