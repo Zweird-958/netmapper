@@ -20,7 +20,7 @@ TO DO :
 ⬛ Responsive
 ✅ Sign In
 ✅ Sign Up
-⬛ Command Per User
+✅ Command
 ⬛ User History
 ⬛ Options (--max-retries)
 ✅ Scan Options (-sV,-sS)
