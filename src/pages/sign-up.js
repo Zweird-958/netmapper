@@ -1,9 +1,11 @@
 import Page from "@/web/Page"
 import AbsoluteDiv from "@/web/components/AbsoluteDiv"
+import AppContext from "@/web/components/AppContext"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import SubmitButton from "@/web/components/SubmitButton"
 import api from "@/web/services/api"
+import { useContext } from "react"
 import * as yup from "yup"
 
 const initialValues = {
@@ -19,8 +21,14 @@ const validationSchema = yup.object().shape({
 })
 
 const SignUp = () => {
+  const {
+    actions: { signIn },
+  } = useContext(AppContext)
+
   const handleSubmit = async (values) => {
     await api.post("/sign-up", values)
+    const { email, password } = values
+    await signIn(email, password)
   }
 
   return (

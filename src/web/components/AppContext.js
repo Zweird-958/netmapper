@@ -25,6 +25,8 @@ export const AppContextProvider = (props) => {
       localStorage.setItem(config.session.localStorageKey, jwt)
       setSession(jsonwebtoken.decode(jwt).payload)
 
+      router.push("/scan")
+
       return [null, true]
     } catch (err) {
       return [err, false]
