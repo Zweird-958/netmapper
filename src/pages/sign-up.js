@@ -1,4 +1,5 @@
 import Page from "@/web/Page"
+import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import SubmitButton from "@/web/components/SubmitButton"
@@ -24,16 +25,18 @@ const SignUp = () => {
 
   return (
     <Page>
-      <Form
-        validationSchema={validationSchema}
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-      >
-        <Field name="username" placeholder="Username" />
-        <Field name="email" placeholder="E-mail" />
-        <Field name="password" placeholder="Password" type="password" />
-        <SubmitButton>S'inscrire</SubmitButton>
-      </Form>
+      <AbsoluteDiv>
+        <Form
+          validationSchema={validationSchema}
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+        >
+          <Field name="username" placeholder="Username" />
+          <Field name="email" placeholder="E-mail" />
+          <Field name="password" placeholder="Password" type="password" />
+          <SubmitButton>S'inscrire</SubmitButton>
+        </Form>
+      </AbsoluteDiv>
     </Page>
   )
 }

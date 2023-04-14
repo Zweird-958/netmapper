@@ -9,6 +9,7 @@ import api from "@/web/services/api"
 import { useState } from "react"
 import * as yup from "yup"
 import { CgSpinner } from "react-icons/cg"
+import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const initialValues = {
   ip: "",
@@ -48,7 +49,7 @@ const Scan = () => {
   return (
     <Page>
       {!currentResult ? (
-        <div className="absolute -z-10 flex h-screen w-full flex-col items-center justify-center">
+        <AbsoluteDiv className="flex-col">
           {isLoading ? (
             <CgSpinner className="h-16 w-16 animate-spin text-blue-700" />
           ) : (
@@ -69,7 +70,7 @@ const Scan = () => {
               <SubmitButton>SCAN</SubmitButton>
             </Form>
           )}
-        </div>
+        </AbsoluteDiv>
       ) : currentResult.result ? (
         <div className="mx-auto mt-5 flex w-3/5 flex-col">
           <HistorySummary
