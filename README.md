@@ -17,7 +17,6 @@ SECURITY_PASSWORD_ITERATIONS=
 TO DO :
 
 ```
-
 ⬛ Responsive
 ✅ Sign In
 ✅ Sign Up
@@ -25,4 +24,6 @@ TO DO :
 ⬛ User History
 ⬛ Options (--max-retries)
 ✅ Scan Options (-sV,-sS)
+⬛ Admin Pannel
+⬛ Delete Command
 ```
