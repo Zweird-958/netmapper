@@ -22,7 +22,7 @@ TO DO :
 ✅ Sign Up
 ✅ Command
 ⬛ Delete Command
-⬛ User History
+✅ User History
 ⬛ Options (--max-retries)
 ✅ Scan Options (-sV,-sS)
 ⬛ Admin Pannel
