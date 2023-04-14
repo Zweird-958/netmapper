@@ -8,7 +8,7 @@ import SubmitButton from "@/web/components/SubmitButton"
 import api from "@/web/services/api"
 import { useState } from "react"
 import * as yup from "yup"
-// import child_process from "node:child_process"
+import { CgSpinner } from "react-icons/cg"
 
 const initialValues = {
   ip: "",
@@ -30,38 +30,45 @@ const validationSchema = yup.object().shape({
 
 const Scan = () => {
   const [currentResult, setCurrentResult] = useState()
+  const [isLoading, setIsLoading] = useState(false)
 
   const resetResult = () => {
     setCurrentResult()
   }
 
   const handleSubmit = async (values) => {
+    setIsLoading(true)
     const {
       data: { result },
     } = await api.post("/command", values)
     setCurrentResult(result)
+    setIsLoading(false)
   }
 
   return (
     <Page>
       {!currentResult ? (
         <div className="absolute -z-10 flex h-screen w-full flex-col items-center justify-center">
-          <Form
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            <p className="mx-auto w-fit text-3xl font-bold tracking-wider text-blue-400 transition-all hover:scale-110 dark:text-blue-600">
-              SCAN
-            </p>
-            <Field name="ip" placeholder="IP" />
-            <div className="flex justify-center gap-2">
-              <Radio name="scanOptions" label="-sV" value="-sV" />
-              <Radio name="scanOptions" label="-sS" value="-sS" />
-            </div>
-            <Field name="retries" placeholder="Max retries" type="number" />
-            <SubmitButton>SCAN</SubmitButton>
-          </Form>
+          {isLoading ? (
+            <CgSpinner className="h-16 w-16 animate-spin text-blue-700" />
+          ) : (
+            <Form
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              <p className="mx-auto w-fit text-3xl font-bold tracking-wider text-blue-400 transition-all hover:scale-110 dark:text-blue-600">
+                SCAN
+              </p>
+              <Field name="ip" placeholder="IP" />
+              <div className="flex justify-center gap-2">
+                <Radio name="scanOptions" label="-sV" value="-sV" />
+                <Radio name="scanOptions" label="-sS" value="-sS" />
+              </div>
+              <Field name="retries" placeholder="Max retries" type="number" />
+              <SubmitButton>SCAN</SubmitButton>
+            </Form>
+          )}
         </div>
       ) : currentResult.result ? (
         <div className="mx-auto mt-5 flex w-3/5 flex-col">
