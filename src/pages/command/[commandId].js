@@ -13,14 +13,16 @@ const CommandPage = () => {
 
   useEffect(() => {
     ;(async () => {
-      try {
-        const {
-          data: { result },
-        } = await api.get(`/command/${commandId}`)
+      if (commandId) {
+        try {
+          const {
+            data: { result },
+          } = await api.get(`/command/${commandId}`)
 
-        setCommand(result)
-      } catch {
-        return
+          setCommand(result)
+        } catch {
+          return
+        }
       }
     })()
   }, [commandId])
