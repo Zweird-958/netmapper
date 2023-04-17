@@ -9,18 +9,34 @@ const handler = mw({
       const { commandId } = req.query
       const user = req.user
 
-      const command = await CommandModel.findOne({
-        _id: commandId,
-        "user._id": user._id,
-      })
+      console.log(commandId)
 
-      if (!command) {
-        res.status(404).send({ result: "404 Not found!" })
+      // console.log(user)
+
+      if (!user) {
+        res.status(403).send({ result: "403 Forbidden" })
 
         return
       }
 
-      res.send({ result: command })
+      try {
+        const command = await CommandModel.findOne({
+          _id: commandId,
+          user: user,
+        })
+
+        if (!command) {
+          res.status(404).send({ error: "404 Not found!" })
+
+          return
+        }
+
+        res.send({ result: command })
+      } catch (err) {
+        res.status(404).send({ error: "404 Not Found" })
+
+        return
+      }
     },
   ],
 })

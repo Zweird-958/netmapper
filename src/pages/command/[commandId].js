@@ -21,11 +21,13 @@ const CommandPage = () => {
 
           setCommand(result)
         } catch {
+          router.push("/scan")
+
           return
         }
       }
     })()
-  }, [commandId])
+  }, [commandId, router])
 
   return (
     <Page>
@@ -40,7 +42,6 @@ const CommandPage = () => {
             label="Options utilisé"
           />
           <CommandInfo result={command.createdAt} label="Date du scan" />
-          <p>{command.options.toString()}</p>
         </CommandDiv>
       )}
     </Page>

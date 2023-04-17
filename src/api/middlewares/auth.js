@@ -29,8 +29,7 @@ const auth = async (req, res, next) => {
     await next()
   } catch (err) {
     if (err instanceof jsonwebtoken.JsonWebTokenError) {
-      // res.status(403).send({ error: "Forbidden" })
-      res.send({ error: "Forbidden" })
+      res.status(403).send({ error: "Forbidden" })
 
       return
     }
