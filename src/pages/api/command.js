@@ -1,7 +1,7 @@
 import CommandModel from "@/api/db/models/CommandModel"
-import { spawn } from "child_process"
-import mw from "@/api/mw"
 import auth from "@/api/middlewares/auth"
+import mw from "@/api/mw"
+import { spawn } from "child_process"
 
 const handler = mw({
   POST: [
@@ -36,7 +36,7 @@ const handler = mw({
           ip,
           options,
           result,
-          user,
+          user: { id: user._id, username: user.username },
         })
         res.send({ result: command })
 
@@ -55,7 +55,8 @@ const handler = mw({
       const user = req.user
 
       const history = await CommandModel.find({
-        "user._id": user._id,
+        "user.id": user._id,
+        "user.username": user.username,
       }).sort({ createdAt: -1 })
 
       res.send({ result: history })

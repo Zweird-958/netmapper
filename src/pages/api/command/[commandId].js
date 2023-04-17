@@ -9,10 +9,6 @@ const handler = mw({
       const { commandId } = req.query
       const user = req.user
 
-      console.log(commandId)
-
-      // console.log(user)
-
       if (!user) {
         res.status(403).send({ result: "403 Forbidden" })
 
@@ -22,7 +18,8 @@ const handler = mw({
       try {
         const command = await CommandModel.findOne({
           _id: commandId,
-          user: user,
+          "user.id": user._id,
+          "user.username": user.username,
         })
 
         if (!command) {

@@ -1,4 +1,4 @@
-import UserSchema from "@/api/db/schemas/UserSchema"
+import EmbeddedUserSchema from "@/api/db/schemas/EmbeddedUserSchema"
 import { Schema } from "mongoose"
 
 const CommandSchema = new Schema(
@@ -15,7 +15,7 @@ const CommandSchema = new Schema(
     },
 
     user: {
-      type: UserSchema,
+      type: EmbeddedUserSchema,
       required: true,
     },
   },
