@@ -29,5 +29,5 @@ TO DO :
 ⬛ Delete Command
 ⬛ Profil Page
 ⬛ RegEx Password
-⬛ Set Session to null when token expires
+🟧 Set Session to null when token expires (test in 2 days)
 ```
