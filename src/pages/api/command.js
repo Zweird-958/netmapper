@@ -20,8 +20,8 @@ const handler = mw({
         const nmap = spawn("nmap", [options, ip].flat())
         let result = ""
 
-        nmap.stdout.on("data", async (data) => {
-          result += await data.toString()
+        nmap.stdout.on("data", (data) => {
+          result += data.toString()
         })
 
         nmap.on("close", (code) => {
@@ -30,9 +30,7 @@ const handler = mw({
       })
 
       try {
-        // console.log("result")
         const result = await resultPromise
-        // console.log(result)
 
         const command = await CommandModel.create({
           ip,
@@ -44,7 +42,8 @@ const handler = mw({
 
         return
       } catch (err) {
-        res.send({ result: err })
+        console.error(err)
+        res.send({ error: err })
 
         return
       }

@@ -20,7 +20,8 @@ TO DO :
 ⬛ Responsive
 ✅ Sign In
 ✅ Sign Up
-✅ Command
+⬛ Command
+  Do EmbeddedUserSchema
 ⬛ Delete Command
 ✅ User History
 ⬛ Options (--max-retries)

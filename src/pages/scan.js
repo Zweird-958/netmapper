@@ -13,7 +13,9 @@ import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const initialValues = {
   ip: "",
-  retries: "",
+  // options: {
+  //   retries: undefined,
+  // },
   scanOptions: undefined,
 }
 
@@ -38,10 +40,12 @@ const Scan = () => {
   }
 
   const handleSubmit = async (values) => {
+    // console.log(values)
     setIsLoading(true)
     const {
       data: { result },
     } = await api.post("/command", values)
+
     setCurrentResult(result)
     setIsLoading(false)
   }
@@ -85,7 +89,8 @@ const Scan = () => {
           </Button>
         </div>
       ) : (
-        <p>{currentResult}</p>
+        // <p>{currentResult}</p>
+        <p>pipi</p>
       )}
     </Page>
   )
