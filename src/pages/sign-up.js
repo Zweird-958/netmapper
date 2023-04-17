@@ -17,7 +17,15 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   username: yup.string().required().label("😀 Username"),
   email: yup.string().email().required().label("✉️ E-mail"),
-  password: yup.string().min(8).required().label("🔒 Password"),
+  password: yup
+    .string()
+    .min(8)
+    // .matches(
+    //   /^\w*[?*%_,()@]+\w*[0-9]+\w*[A-Z]+\w*$/,
+    //   "❌ Votre mot de passe doit contenir au moins un caractère spécial (?*%_,()), un chiffre et une majuscule"
+    // )
+    .required()
+    .label("🔒 Password"),
 })
 
 const SignUp = () => {
