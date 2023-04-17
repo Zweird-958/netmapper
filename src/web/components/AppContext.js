@@ -34,13 +34,23 @@ export const AppContextProvider = (props) => {
   }
 
   useEffect(() => {
-    const jwt = localStorage.getItem(config.session.localStorageKey)
+    ;(async () => {
+      const jwt = localStorage.getItem(config.session.localStorageKey)
 
-    if (jwt) {
-      setSession(jsonwebtoken.decode(jwt).payload)
+      const {
+        data: { error },
+      } = await api.get("/session")
 
-      return
-    }
+      if (error) {
+        return signOut()
+      }
+
+      if (jwt) {
+        setSession(jsonwebtoken.decode(jwt).payload)
+
+        return
+      }
+    })()
   }, [])
 
   return (

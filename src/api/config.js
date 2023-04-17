@@ -12,7 +12,7 @@ const config = {
     },
     jwt: {
       secret: process.env.SECURITY_JWT_SECRET,
-      expiresIn: "2 days",
+      expiresIn: "1 min",
     },
     password: {
       salt: process.env.SECURITY_PASSWORD_SALT,
