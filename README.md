@@ -27,7 +27,7 @@ TO DO :
 ✅ Scan Options (-sV,-sS)
 ⬛ Admin Pannel
 ⬛ Delete Command
-⬛ Profil Page
+✅ Profil Page
 ⬛ RegEx Password
 🟧 Set Session to null when token expires (test in 2 days)
 ```
