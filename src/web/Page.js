@@ -29,6 +29,9 @@ const Page = (props) => {
                 <HeaderLink href="/history" className="font-medium">
                   HISTORIQUE
                 </HeaderLink>
+                <HeaderLink href="/profil" className="font-medium">
+                  PROFIL
+                </HeaderLink>
                 <button
                   onClick={signOut}
                   className="rounded border-b-blue-400 py-2 font-medium transition-all duration-500 hover:bg-blue-500 hover:px-2 hover:text-white dark:hover:text-black"
