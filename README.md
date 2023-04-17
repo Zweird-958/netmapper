@@ -28,5 +28,6 @@ TO DO :
 ⬛ Admin Pannel
 ⬛ Delete Command
 ⬛ Profil Page
+⬛ RegEx Password
 ⬛ Set Session to null when token expires
 ```
