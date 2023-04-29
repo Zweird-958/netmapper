@@ -31,7 +31,7 @@ const handler = mw({
       })
 
       const resultPromise = new Promise((resolve, reject) => {
-        const nmap = spawn("nmap", ["--max-retries", 5, ip].flat())
+        const nmap = spawn("nmap", [commandOptions, ip].flat())
         let result = ""
 
         nmap.stdout.on("data", (data) => {
