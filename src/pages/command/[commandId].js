@@ -38,10 +38,11 @@ const CommandPage = () => {
           <CommandInfo result={command.result} label="Résultat" />
           <CommandInfo
             result={
-              command.options.length > 0 ? command.options.join(",") : "Aucune"
+              command.options.length > 0 ? command.options.join(", ") : "Aucune"
             }
             label="Options utilisé"
           />
+          <CommandInfo result={command.command} label="Commande" />
           <CommandInfo result={command.createdAt} label="Date du scan" />
         </CommandDiv>
       )}
