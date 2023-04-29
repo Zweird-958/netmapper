@@ -19,7 +19,13 @@ const History = () => {
   }, [])
 
   const deleteCommand = (id) => async () => {
-    await api.delete("/command", { id })
+    try {
+      await api.delete("/command", { id })
+    } catch (err) {
+      console.error(err)
+
+      return
+    }
   }
 
   return (
