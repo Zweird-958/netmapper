@@ -17,12 +17,11 @@ const call =
       ...options,
     }
 
-    console.log(opts)
-    console.log(data)
-    console.log(path)
-    console.log(method)
-
-    return axios[method](path, method === "get" ? opts : data, opts)
+    return axios[method](
+      path,
+      ["get", "delete"].includes(method) ? opts : data,
+      opts
+    )
   }
 
 const api = {
