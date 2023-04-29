@@ -11,10 +11,16 @@ const call =
       options.headers,
       jwt ? { authorization: jwt } : {}
     )
+
     const opts = {
       baseURL: config.api.baseURL,
       ...options,
     }
+
+    console.log(opts)
+    console.log(data)
+    console.log(path)
+    console.log(method)
 
     return axios[method](path, method === "get" ? opts : data, opts)
   }
