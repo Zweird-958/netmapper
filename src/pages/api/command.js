@@ -11,25 +11,27 @@ const handler = mw({
       const user = req.user
 
       let allOptions = []
+      let commandOptions = []
 
       if (scanOptions) {
         allOptions.push(scanOptions)
+        commandOptions.push(scanOptions)
       }
 
       Object.entries(options).forEach(([optionName, optionValue]) => {
         if (optionValue !== "" && optionValue) {
-          allOptions.push(
-            `--${optionName.replace(
-              /[A-Z]/g,
-              (match) => "-" + match.toLowerCase()
-            )}`
-          )
+          const option = `--${optionName.replace(
+            /[A-Z]/g,
+            (match) => "-" + match.toLowerCase()
+          )}`
+          allOptions.push(option)
+          commandOptions.push(option)
+          commandOptions.push(optionValue)
         }
       })
 
-      console.log(options)
       const resultPromise = new Promise((resolve, reject) => {
-        const nmap = spawn("nmap", [options, ip].flat())
+        const nmap = spawn("nmap", ["--max-retries", 5, ip].flat())
         let result = ""
 
         nmap.stdout.on("data", (data) => {
@@ -48,8 +50,10 @@ const handler = mw({
           ip,
           options: allOptions,
           result,
+          command: `nmap ${commandOptions.join(" ")} ${ip}`,
           user: { id: user._id, username: user.username },
         })
+
         res.send({ result: command })
 
         return

@@ -31,6 +31,19 @@ const validationSchema = yup.object().shape({
   retries: yup.string().label("Max retries"),
 })
 
+const ScanButton = (props) => {
+  const { onClick } = props
+
+  return (
+    <Button
+      className="mx-auto my-5 w-fit bg-blue-500 text-center transition-all hover:bg-blue-600"
+      onClick={onClick}
+    >
+      Faire un nouveau scan
+    </Button>
+  )
+}
+
 const Scan = () => {
   const [currentResult, setCurrentResult] = useState()
   const [isLoading, setIsLoading] = useState(false)
@@ -42,10 +55,11 @@ const Scan = () => {
   const handleSubmit = async (values) => {
     setIsLoading(true)
     const {
-      data: { result },
+      data: { result, error },
     } = await api.post("/command", values)
 
-    setCurrentResult(result)
+    console.log(error)
+    setCurrentResult(result ?? error)
     setIsLoading(false)
   }
 
@@ -84,15 +98,16 @@ const Scan = () => {
             result={currentResult.result}
             id={currentResult._id}
           />
-          <Button
-            className="mx-auto my-5 w-fit bg-blue-500 text-center transition-all hover:bg-blue-600"
-            onClick={resetResult}
-          >
-            Faire un nouveau scan
-          </Button>
+          <ScanButton onClick={resetResult} />
         </div>
       ) : (
-        <p>{currentResult}</p>
+        <AbsoluteDiv className="flex-col">
+          <div className="flex h-1/4 w-1/3 flex-col justify-center rounded border-2 border-blue-950 p-4 text-center text-white">
+            <p>Oups il y a une erreur : </p>
+            <p>{currentResult}</p>
+          </div>
+          <ScanButton onClick={resetResult} />
+        </AbsoluteDiv>
       )}
     </Page>
   )

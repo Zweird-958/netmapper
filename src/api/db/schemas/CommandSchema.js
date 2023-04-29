@@ -7,9 +7,15 @@ const CommandSchema = new Schema(
       type: String,
       required: true,
     },
+
     options: [{ type: String }],
 
     result: {
+      type: String,
+      required: true,
+    },
+
+    command: {
       type: String,
       required: true,
     },
