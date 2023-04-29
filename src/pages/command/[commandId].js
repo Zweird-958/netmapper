@@ -20,7 +20,8 @@ const CommandPage = () => {
           } = await api.get(`/command/${commandId}`)
 
           setCommand(result)
-        } catch {
+        } catch (err) {
+          console.error(err)
           router.push("/scan")
 
           return
@@ -37,7 +38,7 @@ const CommandPage = () => {
           <CommandInfo result={command.result} label="Résultat" />
           <CommandInfo
             result={
-              command.options.lenght > 0 ? command.options.join(",") : "Aucune"
+              command.options.length > 0 ? command.options.join(",") : "Aucune"
             }
             label="Options utilisé"
           />
