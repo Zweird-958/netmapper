@@ -46,6 +46,7 @@ const SignUp = () => {
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          title="INSCRIPTION"
         >
           <Field name="username" placeholder="Username" />
           <Field name="email" placeholder="E-mail" />

@@ -58,7 +58,6 @@ const Scan = () => {
       data: { result, error },
     } = await api.post("/command", values)
 
-    console.log(error)
     setCurrentResult(result ?? error)
     setIsLoading(false)
   }
@@ -74,10 +73,8 @@ const Scan = () => {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
+              title="SCAN"
             >
-              <p className="mx-auto w-fit text-3xl font-bold tracking-wider text-blue-400 transition-all hover:scale-110 dark:text-blue-600">
-                SCAN
-              </p>
               <Field name="ip" placeholder="IP" />
               <div className="flex justify-center gap-2">
                 <Radio name="scanOptions" label="-sV" value="-sV" />

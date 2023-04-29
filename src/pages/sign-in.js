@@ -41,6 +41,7 @@ const SignIn = () => {
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          title="CONNEXION"
         >
           <Field name="email" placeholder="E-mail" />
           <Field name="password" placeholder="Password" type="password" />

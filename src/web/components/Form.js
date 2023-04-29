@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { Formik, Form as FormFormik } from "formik"
 
 const Form = (props) => {
-  const { children, className, ...otherProps } = props
+  const { children, className, title, ...otherProps } = props
 
   return (
     <Formik {...otherProps}>
@@ -13,6 +13,9 @@ const Form = (props) => {
           className
         )}
       >
+        <p className="mx-auto w-fit text-3xl font-bold tracking-wider text-blue-400 transition-all hover:scale-110 dark:text-blue-600">
+          {title}
+        </p>
         {children}
       </FormFormik>
     </Formik>
