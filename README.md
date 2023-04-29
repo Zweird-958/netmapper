@@ -20,14 +20,12 @@ TO DO :
 ⬛ Responsive
 ✅ Sign In
 ✅ Sign Up
-⬛ Command
-  Do EmbeddedUserSchema
+✅ Command
 ⬛ Delete Command
 ✅ User History
 ⬛ Options (--max-retries)
 ✅ Scan Options (-sV,-sS)
 ⬛ Admin Pannel
-⬛ Delete Command
 ✅ Profil Page
 ⬛ RegEx Password
 🟧 Set Session to null when token expires (test in 2 days)
