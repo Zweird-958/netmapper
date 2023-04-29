@@ -10,11 +10,15 @@ const History = () => {
 
   useEffect(() => {
     ;(async () => {
-      const {
-        data: { result },
-      } = await api.get("/command")
+      try {
+        const {
+          data: { result },
+        } = await api.get("/command")
 
-      setHistory(result)
+        setHistory(result)
+      } catch (err) {
+        return
+      }
     })()
   }, [])
 
@@ -22,8 +26,6 @@ const History = () => {
     try {
       await api.delete("/command", { id })
     } catch (err) {
-      console.error(err)
-
       return
     }
   }
