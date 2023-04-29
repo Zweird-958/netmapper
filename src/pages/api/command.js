@@ -50,7 +50,7 @@ const handler = mw({
           ip,
           options: allOptions,
           result,
-          command: `nmap ${commandOptions.join(" ")} ${ip}`,
+          completeCommand: `nmap ${commandOptions.join(" ")} ${ip}`,
           user: { id: user._id, username: user.username },
         })
 

@@ -42,7 +42,7 @@ const CommandPage = () => {
             }
             label="Options utilisé"
           />
-          <CommandInfo result={command.command} label="Commande" />
+          <CommandInfo result={command.completeCommand} label="Commande" />
           <CommandInfo result={command.createdAt} label="Date du scan" />
         </CommandDiv>
       )}
