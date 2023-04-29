@@ -1,11 +1,9 @@
-import Page from "@/web/components/Page"
 import Button from "@/web/components/Button"
 import HistorySummary from "@/web/components/HistorySummary"
 import Link from "@/web/components/Link"
+import Page from "@/web/components/Page"
 import api from "@/web/services/api"
 import { useEffect, useState } from "react"
-import Loading from "@/web/components/Loading"
-import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const History = () => {
   const [history, setHistory] = useState([])
