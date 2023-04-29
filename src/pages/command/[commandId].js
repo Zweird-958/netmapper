@@ -2,6 +2,7 @@ import Page from "@/web/Page"
 import CommandDiv from "@/web/components/CommandDiv"
 import CommandInfo from "@/web/components/CommandInfo"
 import api from "@/web/services/api"
+import formatDate from "@/web/utils/formatDate"
 import { useEffect, useState } from "react"
 
 const { useRouter } = require("next/router")
@@ -43,7 +44,10 @@ const CommandPage = () => {
             label="Options utilisé"
           />
           <CommandInfo result={command.completeCommand} label="Commande" />
-          <CommandInfo result={command.createdAt} label="Date du scan" />
+          <CommandInfo
+            result={formatDate(command.createdAt)}
+            label="Date du scan"
+          />
         </CommandDiv>
       )}
     </Page>
