@@ -21,12 +21,15 @@ TO DO :
 ✅ Sign In
 ✅ Sign Up
 ✅ Command
-⬛ Delete Command
+🟥 Delete Command
 ✅ User History
-⬛ Options (--max-retries)
+⬛ Options
+  ✅ --max-retries
+  ⬛ --host-timeout
+  ⬛ --max-rate
 ✅ Scan Options (-sV,-sS)
 ⬛ Admin Pannel
 ✅ Profil Page
 ⬛ RegEx Password
-🟧 Set Session to null when token expires (test in 2 days)
+🟥 Set Session to null when token expires (api request problem)
 ```
