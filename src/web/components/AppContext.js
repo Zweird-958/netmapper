@@ -36,13 +36,13 @@ export const AppContextProvider = (props) => {
   useEffect(() => {
     ;(async () => {
       try {
-        const {
-          data: { error },
-        } = await api.get("/session")
+        // const {
+        //   data: { error },
+        // } = await api.get("/session")
 
-        if (error) {
-          return signOut()
-        }
+        // if (error) {
+        //   return signOut()
+        // }
 
         const jwt = localStorage.getItem(config.session.localStorageKey)
 
