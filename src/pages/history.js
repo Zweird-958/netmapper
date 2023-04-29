@@ -4,12 +4,19 @@ import HistorySummary from "@/web/components/HistorySummary"
 import Link from "@/web/components/Link"
 import api from "@/web/services/api"
 import { useEffect, useState } from "react"
+import Loading from "@/web/components/Loading"
+import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const History = () => {
   const [history, setHistory] = useState([])
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     ;(async () => {
+      if (deleting) {
+        return
+      }
+
       try {
         const {
           data: { result },
@@ -20,12 +27,16 @@ const History = () => {
         return
       }
     })()
-  }, [])
+  }, [deleting])
 
   const deleteCommand = (id) => async () => {
     try {
-      await api.delete("/command", { id })
+      setDeleting(true)
+      await api.delete(`/command/${id}`)
+      setDeleting(false)
     } catch (err) {
+      setDeleting(false)
+
       return
     }
   }

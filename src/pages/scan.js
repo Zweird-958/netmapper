@@ -1,15 +1,15 @@
-import Page from "@/web/components/Page"
+import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 import Button from "@/web/components/Button"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import HistorySummary from "@/web/components/HistorySummary"
+import Loading from "@/web/components/Loading"
+import Page from "@/web/components/Page"
 import Radio from "@/web/components/Radio"
 import SubmitButton from "@/web/components/SubmitButton"
 import api from "@/web/services/api"
 import { useState } from "react"
 import * as yup from "yup"
-import { CgSpinner } from "react-icons/cg"
-import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const initialValues = {
   ip: "",
@@ -67,7 +67,7 @@ const Scan = () => {
       {!currentResult ? (
         <AbsoluteDiv className="flex-col">
           {isLoading ? (
-            <CgSpinner className="h-16 w-16 animate-spin text-blue-700" />
+            <Loading />
           ) : (
             <Form
               initialValues={initialValues}

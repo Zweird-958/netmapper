@@ -36,6 +36,25 @@ const handler = mw({
       }
     },
   ],
+  DELETE: [
+    auth,
+    async (req, res) => {
+      const { commandId } = req.query
+      const { _id } = req.user
+      const command = await CommandModel.deleteOne({
+        _id: commandId,
+        "user.id": _id,
+      })
+
+      if (command.deletedCount === 0) {
+        res.status(404).send({ error: "404 Not found!" })
+
+        return
+      }
+
+      res.send({ result: command })
+    },
+  ],
 })
 
 export default handler
