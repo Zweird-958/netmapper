@@ -7,15 +7,27 @@ const handler = mw({
   POST: [
     auth,
     async (req, res) => {
-      const { ip, scanOptions } = req.body
+      const { ip, scanOptions, options } = req.body
       const user = req.user
 
-      let options = []
+      let allOptions = []
 
       if (scanOptions) {
-        options.push(scanOptions)
+        allOptions.push(scanOptions)
       }
 
+      Object.entries(options).forEach(([optionName, optionValue]) => {
+        if (optionValue !== "" && optionValue) {
+          allOptions.push(
+            `--${optionName.replace(
+              /[A-Z]/g,
+              (match) => "-" + match.toLowerCase()
+            )}`
+          )
+        }
+      })
+
+      console.log(options)
       const resultPromise = new Promise((resolve, reject) => {
         const nmap = spawn("nmap", [options, ip].flat())
         let result = ""
@@ -34,7 +46,7 @@ const handler = mw({
 
         const command = await CommandModel.create({
           ip,
-          options,
+          options: allOptions,
           result,
           user: { id: user._id, username: user.username },
         })
@@ -42,7 +54,6 @@ const handler = mw({
 
         return
       } catch (err) {
-        console.error(err)
         res.send({ error: err })
 
         return

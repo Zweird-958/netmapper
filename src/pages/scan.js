@@ -13,9 +13,9 @@ import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 
 const initialValues = {
   ip: "",
-  // options: {
-  //   retries: undefined,
-  // },
+  options: {
+    maxRetries: undefined,
+  },
   scanOptions: undefined,
 }
 
@@ -40,7 +40,6 @@ const Scan = () => {
   }
 
   const handleSubmit = async (values) => {
-    // console.log(values)
     setIsLoading(true)
     const {
       data: { result },
@@ -70,7 +69,11 @@ const Scan = () => {
                 <Radio name="scanOptions" label="-sV" value="-sV" />
                 <Radio name="scanOptions" label="-sS" value="-sS" />
               </div>
-              <Field name="retries" placeholder="Max retries" type="number" />
+              <Field
+                name="options.maxRetries"
+                placeholder="Max retries"
+                type="number"
+              />
               <SubmitButton>SCAN</SubmitButton>
             </Form>
           )}
@@ -89,8 +92,7 @@ const Scan = () => {
           </Button>
         </div>
       ) : (
-        // <p>{currentResult}</p>
-        <p>pipi</p>
+        <p>{currentResult}</p>
       )}
     </Page>
   )
