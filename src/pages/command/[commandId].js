@@ -1,4 +1,4 @@
-import Page from "@/web/Page"
+import Page from "@/web/components/Page"
 import CommandDiv from "@/web/components/CommandDiv"
 import CommandInfo from "@/web/components/CommandInfo"
 import api from "@/web/services/api"

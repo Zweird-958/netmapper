@@ -1,4 +1,4 @@
-import Page from "@/web/Page"
+import Page from "@/web/components/Page"
 import AbsoluteDiv from "@/web/components/AbsoluteDiv"
 import AppContext from "@/web/components/AppContext"
 import Field from "@/web/components/Field"

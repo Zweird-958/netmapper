@@ -1,4 +1,4 @@
-import Page from "@/web/Page"
+import Page from "@/web/components/Page"
 import Button from "@/web/components/Button"
 import HistorySummary from "@/web/components/HistorySummary"
 import Link from "@/web/components/Link"
