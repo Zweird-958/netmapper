@@ -29,7 +29,7 @@ const HomePage = () => {
       </p>
       <p className="max-w-md text-center ">
         {username
-          ? `Bon retour parmis nous ${username} 👋 ! Effectue un scan 🌐 ou bien regarde ton historique 📄`
+          ? `Bon retour parmi nous ${username} 👋 ! Effectue un scan 🌐 ou bien regarde ton historique 📄`
           : " Bienvenue sur Netmapper 👋 ! Si vous êtes nouveau veuillez créer un compte ou bien connectez vous!"}
       </p>
       <div className="flex gap-7">
