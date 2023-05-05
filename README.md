@@ -23,10 +23,11 @@ TO DO :
 ✅ Command
 ✅ Delete Command
 ✅ User History
-⬛ Options
+✅ Options
   ✅ --max-retries
-  ⬛ --host-timeout
-  ⬛ --max-rate
+  ✅ --host-timeout
+  ✅ --max-rate
+⬛ One request in same time
 ✅ Scan Options (-sV,-sS)
 ⬛ Admin Pannel
 ✅ Profil Page

@@ -14,7 +14,9 @@ import * as yup from "yup"
 const initialValues = {
   ip: "",
   options: {
-    maxRetries: undefined,
+    maxRetries: "",
+    maxRate: "",
+    maxTimeout: "",
   },
   scanOptions: undefined,
 }
@@ -83,6 +85,16 @@ const Scan = () => {
               <Field
                 name="options.maxRetries"
                 placeholder="Max retries"
+                type="number"
+              />
+              <Field
+                name="options.maxRate"
+                placeholder="Max rate"
+                type="number"
+              />
+              <Field
+                name="options.hostTimeout"
+                placeholder="Host Timeout"
                 type="number"
               />
               <SubmitButton>SCAN</SubmitButton>
