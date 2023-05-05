@@ -36,13 +36,7 @@ export const AppContextProvider = (props) => {
   useEffect(() => {
     ;(async () => {
       try {
-        // const {
-        //   data: { error },
-        // } = await api.get("/session")
-
-        // if (error) {
-        //   return signOut()
-        // }
+        await api.get("/session")
 
         const jwt = localStorage.getItem(config.session.localStorageKey)
 
@@ -52,7 +46,7 @@ export const AppContextProvider = (props) => {
           return
         }
       } catch (err) {
-        return
+        return signOut()
       }
     })()
   }, [])
