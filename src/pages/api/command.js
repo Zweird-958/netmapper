@@ -1,11 +1,13 @@
 import CommandModel from "@/api/db/models/CommandModel"
 import auth from "@/api/middlewares/auth"
+import isScanning from "@/api/middlewares/isScanning"
 import mw from "@/api/mw"
 import { spawn } from "child_process"
 
 const handler = mw({
   POST: [
     auth,
+    isScanning,
     async (req, res) => {
       const { ip, scanOptions, options } = req.body
       const user = req.user
@@ -30,6 +32,14 @@ const handler = mw({
         }
       })
 
+      const command = await CommandModel.create({
+        ip,
+        options: allOptions,
+        result: "",
+        completeCommand: `nmap ${commandOptions.join(" ")} ${ip}`,
+        user: { id: user._id, username: user.username },
+      })
+
       const resultPromise = new Promise((resolve, reject) => {
         const nmap = spawn("nmap", [commandOptions, ip].flat())
         let result = ""
@@ -46,18 +56,19 @@ const handler = mw({
       try {
         const result = await resultPromise
 
-        const command = await CommandModel.create({
-          ip,
-          options: allOptions,
-          result,
-          completeCommand: `nmap ${commandOptions.join(" ")} ${ip}`,
-          user: { id: user._id, username: user.username },
-        })
+        await CommandModel.updateOne(
+          {
+            _id: command._id,
+          },
+          { result }
+        )
 
-        res.send({ result: command })
+        res.send({ result: { ...command, result } })
 
         return
       } catch (err) {
+        await CommandModel.deleteOne({ _id: command._id })
+
         res.send({ error: err })
 
         return
@@ -72,6 +83,7 @@ const handler = mw({
       const history = await CommandModel.find({
         "user.id": user._id,
         "user.username": user.username,
+        result: { $ne: "" },
       }).sort({ createdAt: -1 })
 
       res.send({ result: history })

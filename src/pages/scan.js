@@ -8,7 +8,7 @@ import Page from "@/web/components/Page"
 import Radio from "@/web/components/Radio"
 import SubmitButton from "@/web/components/SubmitButton"
 import api from "@/web/services/api"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as yup from "yup"
 
 const initialValues = {
@@ -56,13 +56,40 @@ const Scan = () => {
 
   const handleSubmit = async (values) => {
     setIsLoading(true)
-    const {
-      data: { result, error },
-    } = await api.post("/command", values)
 
-    setCurrentResult(result ?? error)
-    setIsLoading(false)
+    try {
+      const {
+        data: { result },
+      } = await api.post("/command", values)
+      setCurrentResult(result)
+    } catch (err) {
+      setCurrentResult("Accès non autorisé")
+    } finally {
+      setIsLoading(false)
+    }
   }
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        await api.get("/isScanning")
+      } catch (err) {
+        setIsLoading(true)
+
+        setInterval(async () => {
+          try {
+            await api.get("/isScanning")
+
+            if (isLoading) {
+              setIsLoading(false)
+            }
+          } catch (err) {
+            return
+          }
+        }, 3000)
+      }
+    })()
+  }, [])
 
   return (
     <Page>

@@ -12,7 +12,6 @@ const CommandSchema = new Schema(
 
     result: {
       type: String,
-      required: true,
     },
 
     completeCommand: {
