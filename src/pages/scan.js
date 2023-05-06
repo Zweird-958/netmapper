@@ -77,13 +77,12 @@ const Scan = () => {
       } catch (err) {
         setIsLoading(true)
 
-        setInterval(async () => {
+        const scanningInterval = setInterval(async () => {
           try {
             await api.get("/isScanning")
 
-            if (isLoading) {
-              setIsLoading(false)
-            }
+            setIsLoading(false)
+            clearInterval(scanningInterval)
           } catch (err) {
             return
           }
