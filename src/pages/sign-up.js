@@ -21,8 +21,7 @@ const validationSchema = yup.object().shape({
     .string()
     .min(8)
     // .matches(
-    //   /^\w*[?*%_,()@]+\w*[0-9]+\w*[A-Z]+\w*$/,
-    //   "❌ Votre mot de passe doit contenir au moins un caractère spécial (?*%_,()), un chiffre et une majuscule"
+    //   "❌ Votre mot de passe doit contenir au moins un caractère spécial (@$!%*#?&), un chiffre et une majuscule et une minuscule"
     // )
     .required()
     .label("🔒 Password"),
