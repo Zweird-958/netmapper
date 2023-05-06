@@ -27,10 +27,11 @@ TO DO :
   ✅ --max-retries
   ✅ --host-timeout
   ✅ --max-rate
-⬛ One request in same time
+✅ One request in same time
 ✅ Scan Options (-sV,-sS)
-⬛ Admin Pannel
 ✅ Profil Page
+✅ Set Session to null when token expires
+⬛ RegEx Ip and Domain
 ⬛ RegEx Password
-🟥 Set Session to null when token expires (api request problem)
+⬛ Admin Pannel
 ```
