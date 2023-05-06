@@ -22,7 +22,6 @@ const CommandPage = () => {
 
           setCommand(result)
         } catch (err) {
-          console.error(err)
           router.push("/scan")
 
           return
