@@ -3,6 +3,7 @@ import Button from "@/web/components/Button"
 import Field from "@/web/components/Field"
 import Form from "@/web/components/Form"
 import HistorySummary from "@/web/components/HistorySummary"
+import Label from "@/web/components/Label"
 import Loading from "@/web/components/Loading"
 import Page from "@/web/components/Page"
 import Radio from "@/web/components/Radio"
@@ -105,24 +106,30 @@ const Scan = () => {
               onSubmit={handleSubmit}
               title="SCAN"
             >
-              <Field name="ip" placeholder="IP" />
-              <div className="flex justify-center gap-2">
-                <Radio name="scanOptions" label="-sV" value="-sV" />
-                <Radio name="scanOptions" label="-sS" value="-sS" />
+              <Field name="ip" placeholder="127.0.0.1" label="IP" />
+              <div className="mx-auto w-3/4">
+                <Label>Scan Options</Label>
+                <div className="flex justify-center gap-2">
+                  <Radio name="scanOptions" label="-sV" value="-sV" />
+                  <Radio name="scanOptions" label="-sS" value="-sS" />
+                </div>
               </div>
               <Field
                 name="options.maxRetries"
-                placeholder="Max retries"
+                placeholder="5"
                 type="number"
+                label="Max Retries"
               />
               <Field
                 name="options.maxRate"
-                placeholder="Max rate"
+                placeholder="500"
                 type="number"
+                label="Max Rate"
               />
               <Field
                 name="options.hostTimeout"
-                placeholder="Host Timeout"
+                placeholder="0"
+                label="Host Timeout"
                 type="number"
               />
               <SubmitButton>SCAN</SubmitButton>

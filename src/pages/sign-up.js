@@ -48,9 +48,13 @@ const SignUp = () => {
           onSubmit={handleSubmit}
           title="INSCRIPTION"
         >
-          <Field name="username" placeholder="Username" />
-          <Field name="email" placeholder="E-mail" />
-          <Field name="password" placeholder="Password" type="password" />
+          <Field
+            name="username"
+            placeholder="_nmap_"
+            label="Nom d'utilisateur"
+          />
+          <Field name="email" placeholder="nmap@gmail.com" label="E-mail" />
+          <Field name="password" type="password" label="Mot de passe" />
           <SubmitButton>S'inscrire</SubmitButton>
         </Form>
       </AbsoluteDiv>

@@ -43,8 +43,8 @@ const SignIn = () => {
           onSubmit={handleSubmit}
           title="CONNEXION"
         >
-          <Field name="email" placeholder="E-mail" />
-          <Field name="password" placeholder="Password" type="password" />
+          <Field name="email" placeholder="nmap@gmail.com" label="E-mail" />
+          <Field name="password" type="password" label="Mot de passe" />
           <SubmitButton>Se connecter</SubmitButton>
         </Form>
       </AbsoluteDiv>
