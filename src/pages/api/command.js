@@ -41,15 +41,20 @@ const handler = mw({
       })
 
       const resultPromise = new Promise((resolve, reject) => {
-        const nmap = spawn("nmap", [commandOptions, ip].flat())
+        const nmap = spawn("nmap", [commandOptions, ip, "--dsds"].flat())
         let result = ""
+        let error = ""
 
         nmap.stdout.on("data", (data) => {
           result += data.toString()
         })
 
+        nmap.stderr.on("data", (data) => {
+          error += data.toString()
+        })
+
         nmap.on("close", (code) => {
-          code === 0 ? resolve(result) : reject(`Error ${code}`)
+          code === 0 ? resolve(result) : reject(error)
         })
       })
 
@@ -69,7 +74,7 @@ const handler = mw({
       } catch (err) {
         await CommandModel.deleteOne({ _id: command._id })
 
-        res.send({ error: err })
+        res.status(400).send({ error: err })
 
         return
       }

@@ -64,7 +64,16 @@ const Scan = () => {
       } = await api.post("/command", values)
       setCurrentResult(result)
     } catch (err) {
-      setCurrentResult("Accès non autorisé")
+      const {
+        status,
+        data: { error },
+      } = err.response
+
+      if (status === 400) {
+        setCurrentResult(error)
+      } else {
+        setCurrentResult("Accès non autorisé")
+      }
     } finally {
       setIsLoading(false)
     }
@@ -145,7 +154,7 @@ const Scan = () => {
         </div>
       ) : (
         <AbsoluteDiv className="flex-col">
-          <div className="flex h-1/4 w-1/3 flex-col justify-center rounded border-2 border-blue-950 p-4 text-center text-white">
+          <div className="flex h-fit w-1/3 flex-col justify-center rounded border-2 border-blue-500 p-4 text-center shadow-md dark:text-white">
             <p>Oups il y a une erreur : </p>
             <p>{currentResult}</p>
           </div>
