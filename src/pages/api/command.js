@@ -41,7 +41,7 @@ const handler = mw({
       })
 
       const resultPromise = new Promise((resolve, reject) => {
-        const nmap = spawn("nmap", [commandOptions, ip, "--dsds"].flat())
+        const nmap = spawn("nmap", [commandOptions, ip].flat())
         let result = ""
         let error = ""
 
