@@ -26,10 +26,10 @@ const validationSchema = yup.object().shape({
   ip: yup
     .string()
     .required()
-    .matches(
-      /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
-      "❌ Veuillez mettre une ip valide"
-    )
+    // .matches(
+    //   /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,
+    //   "❌ Veuillez mettre une ip valide"
+    // )
     .label("🌐 IP"),
   retries: yup.string().label("Max retries"),
 })
