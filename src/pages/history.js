@@ -42,24 +42,30 @@ const History = () => {
   return (
     <Page>
       <div className="mx-auto mt-2 w-2/5">
-        {history.map(({ result, _id }, index) => (
-          <HistorySummary key={index} result={result} id={_id}>
-            <div className="mt-5 flex justify-between text-white">
-              <Button
-                onClick={deleteCommand(_id)}
-                className="bg-red-500 transition-all hover:bg-red-600"
-              >
-                SUPPRIMER
-              </Button>
-              <Link
-                href={`/command/${_id}`}
-                className="bg-blue-500 hover:bg-blue-600"
-              >
-                VOIR PLUS
-              </Link>
-            </div>
-          </HistorySummary>
-        ))}
+        {history.length > 0 ? (
+          history.map(({ result, _id }, index) => (
+            <HistorySummary key={index} result={result} id={_id}>
+              <div className="mt-5 flex justify-between text-white">
+                <Button
+                  onClick={deleteCommand(_id)}
+                  className="bg-red-500 transition-all hover:bg-red-600"
+                >
+                  SUPPRIMER
+                </Button>
+                <Link
+                  href={`/command/${_id}`}
+                  className="bg-blue-500 hover:bg-blue-600"
+                >
+                  VOIR PLUS
+                </Link>
+              </div>
+            </HistorySummary>
+          ))
+        ) : (
+          <p className="mt-12 text-center text-2xl dark:text-white">
+            Vous n'avez pas d'historique pour le moment !
+          </p>
+        )}
       </div>
     </Page>
   )
