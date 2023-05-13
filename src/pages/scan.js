@@ -96,6 +96,10 @@ const Scan = () => {
             return
           }
         }, 3000)
+
+        return () => {
+          clearInterval(scanningInterval)
+        }
       }
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
