@@ -7,7 +7,6 @@ const formatDate = (dateString) => {
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
-    timeZone: "UTC",
   }
 
   const formatter = new Intl.DateTimeFormat("fr-FR", options)
